@@ -5,12 +5,9 @@ const config = require('config');
 const morgan = require('morgan');
 const express = require('express');
 const cons = require('consolidate');
-const passport = require('passport');
 const bodyParser = require('body-parser');
 
 const AbstractController = require('./controllers');
-
-const { sync } = require('./libraries/db');
 const log = require('./libraries/log');
 
 class App {
@@ -55,16 +52,6 @@ class App {
 
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
-
-    this.app.use(passport.initialize());
-
-    passport.serializeUser((user, callback) => {
-      callback(null, user);
-    });
-
-    passport.deserializeUser((obj, callback) => {
-      callback(null, obj);
-    });
 
     log.verbose('Middlewares initialized');
   }
@@ -117,8 +104,6 @@ class App {
   }
 
   async listen() {
-    await sync();
-    log.verbose('Database synced');
 
     await new Promise((resolve, reject) =>
       this.server.listen(this.config.port, err => (err ? reject(err) : resolve())));
