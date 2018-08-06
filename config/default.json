@@ -1,0 +1,36 @@
+{
+  "environment": "development",
+
+  "server": {
+    "logFormat": "dev",
+    "port": 3000,
+    "baseUrl": "http://localhost:3000"
+  },
+
+  "database": {
+    "dialect": "sqlite",
+    "database": "outlay",
+
+    "operatorsAliases": false
+  },
+
+  "log": {
+    "level": "silly",
+    "labels": [
+      "default",
+      "server",
+      "db"
+    ]
+  },
+
+  "google": {
+    "clientId": "420447536301-kaf5q6gtkkb4v2fu7gnj9c16hmcvflbu.apps.googleusercontent.com",
+    "clientSecret": "",
+    "callbackUrl": "/auth/google/callback"
+  },
+
+  "salesforce": {
+    "password": "",
+    "token": ""
+  }
+}
